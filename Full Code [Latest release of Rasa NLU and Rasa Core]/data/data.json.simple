@@ -1,0 +1,28 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "text": "Hello",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "goodbye",
+        "intent": "goodbye",
+        "entities": []
+      },
+      {
+        "text": "Whats the weather in Berlin at the moment",
+        "intent": "inform",
+        "entities": [
+          {
+            "start": 21,
+            "end": 27,
+            "value": "Berlin",
+            "entity": "location"
+          }
+        ]
+      }
+    ]
+  }
+}
