@@ -10,16 +10,16 @@ import config
 class ActionWeather(Action):
 	def name(self):
 		return 'action_weather'
-		
+
 	def run(self, dispatcher, tracker, domain):
 		from apixu.client import ApixuClient
 		api_key = config.apixu_key #your apixu key
-                print("api_key = :", api_key)
+        print("api_key = :", api_key)
 		client = ApixuClient(api_key)
-		
+
 		loc = tracker.get_slot('location')
 		current = client.getCurrentWeather(q=loc)
-		
+
 		country = current['location']['country']
 		city = current['location']['name']
 		condition = current['current']['condition']['text']
@@ -28,7 +28,6 @@ class ActionWeather(Action):
 		wind_mph = current['current']['wind_mph']
 
 		response = """It is currently {} in {} at the moment. The temperature is {} degrees, the humidity is {}% and the wind speed is {} mph.""".format(condition, city, temperature_c, humidity, wind_mph)
-						
+
 		dispatcher.utter_message(response)
 		return [SlotSet('location',loc)]
-
