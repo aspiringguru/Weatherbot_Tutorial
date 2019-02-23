@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+{% block body %}
+{% if session['logged_in'] %}
+
+You're logged in already!
+
+{% else %}
+
+<form action="/login" method="POST">
+<div class="login">
+<div class="login-screen">
+<div class="app-title">
+<h1>Login</h1>
+</div>
+<div class="login-form">
+<div class="control-group">
+	{%if email %}
+		<input type="email" class="login-field" value="" placeholder="{{email}}" name="username">
+	{% else %}
+		<input type="email" class="login-field" value="" placeholder="Your primary email address" name="username">
+	{% endif %}
+<label class="login-field-icon fui-user" for="login-name"></label></div>
+<div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="password" name="password">
+<label class="login-field-icon fui-lock" for="login-pass"></label></div>
+<div><span id="message" style="color:red">{{ message }}</span></div>
+<input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
+
+</div>
+</div>
+</div>
+</form>
+<form action="/resetPassword">
+  <div class="login">
+  <div class="login-screen">
+  <div class="app-title">
+    <input type="submit" value="Lost Password" class="btn btn-primary btn-large btn-block" />
+  </div>
+  </div>
+  </div>
+</form>
+
+<form action="/register">
+  <div class="login">
+  <div class="login-screen">
+  <div class="app-title">
+    <input type="submit" value="Register" class="btn btn-primary btn-large btn-block" />
+  </div>
+  </div>
+  </div>
+</form>
+{% endif %}
+
+{% endblock %}
